@@ -9,7 +9,7 @@
         <h1>Available Heroes</h1>
         <ul>
         <li th:each="hero:${heroes}">
-            <a th:text="${hero}">hero</a>
+            <a th:href="@{heroes/{item}(item=${hero.name})}" th:text="${hero.name} + ' (level ' + ${hero.level} + ')'">hero</a>
         </li>
         </ul>
         <br>

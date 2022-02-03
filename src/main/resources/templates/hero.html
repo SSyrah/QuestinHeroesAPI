@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="wiewport" content="width=device-width, initial-scale=1.0">
+    <title>Questin Heroes - Hero page</title>
+</head>
+<body>
+            <h2 th:text="${hero.name} ">name</h2>
+            <h3 th:text="${hero.status} ">status</h3>
+            <span th:text="'Level:  ' +  ${hero.level}">level</span>
+            <span th:text="'Level:  ' +  ${hero.health}">health</span>
+            <span th:text="'Level:  ' +  ${hero.gold}">gold</span>
+            <span th:text="'Level:  ' +  ${hero.stamina}">stamina</span>
+                <form method="get" action="/heroes">
+                    <button>Back</button>
+                </form>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,13 +18,20 @@ public class HeroController {
 
     @GetMapping("/heroes")
     public String getHeroes(Model model){
-        ArrayList<String> heroes = heroService.getHeroes();
+        ArrayList<Hero> heroes = heroService.getHeroes();
         model.addAttribute("heroes", heroes);
         return "heroes";
     }
     @PostMapping("/heroes")
     public String addHero(@RequestParam String heroName){
         heroService.setHeroes(heroName);
-        return "heroes";
+        return "redirect:/heroes";
+    }
+
+    @GetMapping("heroes/{heroName}")
+    public String getHeroInfo(@PathVariable String heroName, Model model){
+        Hero hero = heroService.findHeroByName(heroName);
+        model.addAttribute("hero", hero);
+        return "hero";
     }
 }
