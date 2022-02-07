@@ -15,10 +15,10 @@ public class HeroService {
         heroes.add(h1);
         heroes.add(new Hero("Loki", "Chilling", 8 ,10, 200, 55));
         heroes.add(new Hero("Ironman", "Panicing", 14 ,16, 1600, 88));
-        heroes.add(new Hero("Captain America", "Feeling good", 15 ,13, 890, 100));
+        heroes.add(new Hero("Captain America", "Feeling good", 15 ,20, 890, 100));
     }
     public ArrayList<Hero> getHeroes() {
-        return heroes;
+        return this.heroes;
     }
 
     public void setHeroes(String hero) {

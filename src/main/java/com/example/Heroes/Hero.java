@@ -22,6 +22,20 @@ public class Hero {
         this.gold = 1;
     }
 
+    public void completeQuest(){
+        this.gold+= 100;
+        this.level+= 1;
+        this.status = "Completed Quest!!!";
+    }
+
+    public void failQuest(){
+        this.gold = 0;
+        this.health -= 1;
+
+        if (this.health == 0){this.status = "Oh no, hero DIED!";}
+        else {this.status = "Failed in the quest..sorry";}
+    }
+
 
 
 
