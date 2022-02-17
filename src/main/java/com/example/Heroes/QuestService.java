@@ -2,44 +2,59 @@ package com.example.Heroes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class QuestService {
-    private ArrayList<Quest> quests;
+    // private ArrayList<Quest> quests;
+
+    @Autowired
+    private QuestRepository questRepository;
 
     @Autowired
     private HeroService heroService;
 
-    public QuestService() {
+    /*public QuestService() {
         System.out.println("Creating quests...");
         this.quests = new ArrayList<>();
         this.quests.add(new Quest("Steal somethings valuable", 12));
         this.quests.add(new Quest("Beat biggest opponent", 18));
         this.quests.add(new Quest("Last Fight", 19));
 
-    }
+    }*/
 
-    public ArrayList<Quest> getQuests(){
-        return this.quests;
+    public List<Quest> getQuests(){
+        // return all quests which exist
+        return this.questRepository.findAll();
+        //return this.quests;
     }
 
     public void addQuest(String name, int difficulty){
-        this.quests.add(new Quest(name, difficulty));
+        // add new Quest to database
+        this.questRepository.save(new Quest(name, difficulty));
+        //this.quests.add(new Quest(name, difficulty));
     }
 
     public Quest findQuestByName(String questName) {
-        for (Quest quest : quests) {
+        return this.questRepository.findByName(questName).get(0);
+
+        /*for (Quest quest : quests) {
             if (quest.getName().equals(questName)) {
                 return quest;
             }
         }
-        return null;
+        return null;*/
     }
 
+    @Transactional //makes sure that database has completed method before continuing
     public void deleteQuestByName(String name){
-        Quest quest = findQuestByName(name);
-        this.quests.remove(quest);
+        this.questRepository.deleteByName(name);
+         /*Quest quest = findQuestByName(name);
+        this.quests.remove(quest);*/
+
     }
 
     public void tryQuest(String heroName, String questName) {

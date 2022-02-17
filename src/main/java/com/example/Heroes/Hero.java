@@ -2,11 +2,17 @@ package com.example.Heroes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import javax.persistence.Entity;
+
+@Entity
 @Data       // lombok - dependency, adds getters and setters
 @AllArgsConstructor         // creates all-args-constructor
-// @NoArgsConstructor // adds constructor with arguments open
-public class Hero {
+@NoArgsConstructor // adds constructor with arguments open
+
+public class Hero extends AbstractPersistable<Long> {
     private String name;
     private String status;
     private int level;

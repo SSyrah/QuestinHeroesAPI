@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HeroController {
@@ -33,7 +34,7 @@ public class HeroController {
     @GetMapping("heroes/{heroName}")
     public String getHeroInfo(@PathVariable String heroName, Model model){
         Hero hero = heroService.findHeroByName(heroName);
-        ArrayList<Quest> quests = questService.getQuests();
+        List<Quest> quests = questService.getQuests();
         // add hero to model, then return it
         model.addAttribute("hero", hero);
         model.addAttribute("quests",quests);
